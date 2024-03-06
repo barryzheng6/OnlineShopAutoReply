@@ -1,0 +1,42 @@
+# Welcome to Atlas GraphQL!
+#
+# This is an in-browser tool for writing, validating, and
+# testing GraphQL queries.
+#
+# Type queries into this side of the screen, and you will see intelligent
+# typeaheads aware of the current GraphQL type schema generated for your
+# application.
+#
+# Queries typically start with a "{" character. Lines that start
+# with a # are ignored.
+#
+# You can use the Documentation Explorer to the right to see what types
+# are available for you to query for your application.
+#
+# If nothing is appearing in the Documentation Explorer, you may need
+# to resolve some warnings or errors before using GraphQL. A sample query
+# for the Cake type has been generated for you below.
+#
+#
+# Keyboard shortcuts:
+#
+#  Prettify Query:  Shift-Ctrl-P (or press the prettify button above)
+#
+#     Merge Query:  Shift-Ctrl-M (or press the merge button above)
+#
+#       Run Query:  Ctrl-Enter (or press the play button above)
+#
+#   Auto Complete:  Ctrl-Space (or just start typing)
+#
+
+query {
+  cake {
+    _id
+		description
+		image
+		ingredients
+		name
+		shortDescription
+		stock
+  }
+}

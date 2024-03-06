@@ -1,0 +1,231 @@
+input CommentInsertInput {
+  cakeId: CommentCakeIdRelationInput
+  date: DateTime
+  name: String
+  text: String
+  _id: ObjectId
+}
+type Query {
+  cake(query: CakeQueryInput): Cake
+  cakes(query: CakeQueryInput, limit: Int = 100, sortBy: CakeSortByInput): [Cake]!
+  comment(query: CommentQueryInput): Comment
+  comments(query: CommentQueryInput, limit: Int = 100, sortBy: CommentSortByInput): [Comment]!
+}
+enum CommentSortByInput {
+  DATE_ASC
+  NAME_ASC
+  TEXT_DESC
+  _ID_ASC
+  _ID_DESC
+  CAKEID_ASC
+  CAKEID_DESC
+  DATE_DESC
+  NAME_DESC
+  TEXT_ASC
+}
+input CakeQueryInput {
+  name_in: [String]
+  _id_gte: ObjectId
+  description_lte: String
+  ingredients: [String]
+  name_exists: Boolean
+  _id_lt: ObjectId
+  shortDescription_gte: String
+  name_gt: String
+  image_ne: String
+  name_ne: String
+  description_gt: String
+  OR: [CakeQueryInput!]
+  description_nin: [String]
+  stock_lt: Int
+  shortDescription_in: [String]
+  _id_nin: [ObjectId]
+  shortDescription_nin: [String]
+  ingredients_exists: Boolean
+  stock_gt: Int
+  description_in: [String]
+  image_gte: String
+  stock_lte: Int
+  stock_ne: Int
+  stock_nin: [Int]
+  shortDescription_ne: String
+  image_lte: String
+  image_in: [String]
+  shortDescription_gt: String
+  description_lt: String
+  ingredients_nin: [String]
+  shortDescription_exists: Boolean
+  image_exists: Boolean
+  ingredients_in: [String]
+  name_nin: [String]
+  stock_exists: Boolean
+  stock_in: [Int]
+  image_lt: String
+  name_gte: String
+  name_lte: String
+  image_nin: [String]
+  description: String
+  image_gt: String
+  description_ne: String
+  description_gte: String
+  image: String
+  _id_exists: Boolean
+  _id_lte: ObjectId
+  _id: ObjectId
+  stock_gte: Int
+  shortDescription_lte: String
+  name: String
+  _id_gt: ObjectId
+  name_lt: String
+  description_exists: Boolean
+  shortDescription_lt: String
+  _id_ne: ObjectId
+  stock: Int
+  _id_in: [ObjectId]
+  AND: [CakeQueryInput!]
+  shortDescription: String
+}
+type Cake {
+  _id: ObjectId
+  description: String
+  image: String
+  ingredients: [String]
+  name: String
+  shortDescription: String
+  stock: Int
+}
+enum CakeSortByInput {
+  _ID_DESC
+  DESCRIPTION_ASC
+  IMAGE_ASC
+  STOCK_ASC
+  STOCK_DESC
+  SHORTDESCRIPTION_DESC
+  _ID_ASC
+  DESCRIPTION_DESC
+  IMAGE_DESC
+  NAME_ASC
+  NAME_DESC
+  SHORTDESCRIPTION_ASC
+}
+input CommentQueryInput {
+  AND: [CommentQueryInput!]
+  name_lte: String
+  cakeId_exists: Boolean
+  name: String
+  text_gte: String
+  name_nin: [String]
+  text_ne: String
+  OR: [CommentQueryInput!]
+  _id_ne: ObjectId
+  name_ne: String
+  cakeId: CakeQueryInput
+  text: String
+  name_gt: String
+  _id_nin: [ObjectId]
+  text_in: [String]
+  date: DateTime
+  date_ne: DateTime
+  name_lt: String
+  _id_exists: Boolean
+  date_gt: DateTime
+  date_lt: DateTime
+  _id_lt: ObjectId
+  _id_in: [ObjectId]
+  text_lt: String
+  text_gt: String
+  _id_gte: ObjectId
+  name_exists: Boolean
+  text_exists: Boolean
+  date_in: [DateTime]
+  date_exists: Boolean
+  name_gte: String
+  name_in: [String]
+  date_nin: [DateTime]
+  date_lte: DateTime
+  text_lte: String
+  date_gte: DateTime
+  _id_lte: ObjectId
+  _id_gt: ObjectId
+  text_nin: [String]
+  _id: ObjectId
+}
+type UpdateManyPayload {
+  matchedCount: Int!
+  modifiedCount: Int!
+}
+scalar DateTime
+type DeleteManyPayload {
+  deletedCount: Int!
+}
+type InsertManyPayload {
+  insertedIds: [ObjectId]!
+}
+input CommentCakeIdRelationInput {
+  link: ObjectId
+  create: CakeInsertInput
+}
+type Mutation {
+  deleteManyCakes(query: CakeQueryInput): DeleteManyPayload
+  deleteManyComments(query: CommentQueryInput): DeleteManyPayload
+  deleteOneCake(query: CakeQueryInput!): Cake
+  deleteOneComment(query: CommentQueryInput!): Comment
+  insertManyCakes(data: [CakeInsertInput!]!): InsertManyPayload
+  insertManyComments(data: [CommentInsertInput!]!): InsertManyPayload
+  insertOneCake(data: CakeInsertInput!): Cake
+  insertOneComment(data: CommentInsertInput!): Comment
+  replaceOneCake(query: CakeQueryInput, data: CakeInsertInput!): Cake
+  replaceOneComment(query: CommentQueryInput, data: CommentInsertInput!): Comment
+  updateManyCakes(query: CakeQueryInput, set: CakeUpdateInput!): UpdateManyPayload
+  updateManyComments(query: CommentQueryInput, set: CommentUpdateInput!): UpdateManyPayload
+  updateOneCake(query: CakeQueryInput, set: CakeUpdateInput!): Cake
+  updateOneComment(query: CommentQueryInput, set: CommentUpdateInput!): Comment
+  upsertOneCake(query: CakeQueryInput, data: CakeInsertInput!): Cake
+  upsertOneComment(query: CommentQueryInput, data: CommentInsertInput!): Comment
+}
+input CakeInsertInput {
+  ingredients: [String]
+  name: String
+  shortDescription: String
+  stock: Int
+  _id: ObjectId
+  description: String
+  image: String
+}
+type Comment {
+  _id: ObjectId
+  cakeId: Cake
+  date: DateTime
+  name: String
+  text: String
+}
+input CakeUpdateInput {
+  description: String
+  description_unset: Boolean
+  stock: Int
+  ingredients_unset: Boolean
+  shortDescription: String
+  stock_unset: Boolean
+  ingredients: [String]
+  stock_inc: Int
+  name_unset: Boolean
+  name: String
+  shortDescription_unset: Boolean
+  _id_unset: Boolean
+  image: String
+  image_unset: Boolean
+  _id: ObjectId
+}
+scalar ObjectId
+input CommentUpdateInput {
+  _id: ObjectId
+  cakeId: CommentCakeIdRelationInput
+  date: DateTime
+  date_unset: Boolean
+  name_unset: Boolean
+  text: String
+  text_unset: Boolean
+  _id_unset: Boolean
+  name: String
+  cakeId_unset: Boolean
+}
